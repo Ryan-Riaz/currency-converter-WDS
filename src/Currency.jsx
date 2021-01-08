@@ -1,9 +1,14 @@
-const Currency = () => {
+import { v4 as uuid } from "uuid";
+const Currency = ({ currency }) => {
     return (
         <div>
             <input type="number" className="input" />
             <select>
-                <option value="hi">hi</option>
+                {currency.map((option) => (
+                    <option key={uuid()} value={option}>
+                        {option}
+                    </option>
+                ))}
             </select>
         </div>
     );
