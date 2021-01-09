@@ -24,6 +24,14 @@ function App() {
             });
     }, []);
 
+    useEffect(() => {
+        if (fromCurrency != null && toCurrency != null) {
+            fetch(`${BASE_URL}?base=${fromCurrency}&symbols=${toCurrency}`)
+                .then((res) => res.json())
+                .then((data) => setExchange(data.rates[toCurrency]));
+        }
+    }, [fromCurrency, toCurrency]);
+
     let fromAmount, toAmount;
     if (amountInFromCurrency) {
         fromAmount = amount;
